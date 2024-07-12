@@ -1,0 +1,49 @@
+﻿@model Category
+
+
+<div class="card shadow border-0 my-4">
+	<div class="card-header bg-secondary bg-gradient ml-0 py-4">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="py-2 text-white">Create Category</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<div class="row">
+			<div class="col-md-12">
+				<section>
+					<form method="post" >
+						<div class="form-floating mb-3">
+							<input class="form-control" autocomplete="off" aria-required="true" asp-for="Name">
+							<label class="form-label" asp-for="Name">Name</label>
+							<span asp-validation-for="Name" class="text-danger"></span>
+						</div>
+						<div class="form-floating mb-3">
+							<input class="form-control" aria-required="true" autocomplete="off" asp-for="DisplayOrder">
+							<label class="form-label" asp-for="DisplayOrder">Display Order</label>
+							<span asp-validation-for="DisplayOrder" class="text-danger"></span>
+						</div>
+
+						<div class="row">
+							<div class="col-6 col-md-3">
+								<button type="submit" class="btn btn-success form-control">Create</button>
+							</div>
+							<div class="col-6 col-md-3">
+								<a asp-controller="Category" asp-action="Index" class="btn btn-primary form-control">Back to List</a>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
+

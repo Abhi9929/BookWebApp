@@ -1,0 +1,118 @@
+﻿@model ProductVM;
+
+@{
+	ViewData["Title"] = @Model.Product.Id != 0 ? "Edit" : "Create";
+}
+
+<div class="card shadow border-0 my-4">
+	<div class="card-header bg-secondary bg-gradient ml-0 py-4">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="py-2 text-white">@(Model.Product.Id != 0 ? "Edit" : "Create") Product</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<form method="post" enctype="multipart/form-data">
+			<input asp-for="Product.Id" hidden />
+			<input asp-for="Product.ImageUrl" hidden />
+			<div class="row">
+				<div class="col-9">
+					<div class="form-floating mb-3">
+						<input class="form-control" autocomplete="off" aria-required="true" asp-for="Product.Title">
+						<label class="form-label" asp-for="Product.Title">Title</label>
+						<span asp-validation-for="Product.Title" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label class="form-label text-muted" asp-for="Product.Description">Description</label>
+						<textarea class="form-control" aria-required="true" autocomplete="off" asp-for="Product.Description"></textarea>
+					</div>
+					<div class="form-floating mb-3">
+						<input class="form-control" aria-required="true" autocomplete="off" asp-for="Product.Author">
+						<label class="form-label" asp-for="Product.Author">Author</label>
+						<span asp-validation-for="Product.Author" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-3">
+						<input class="form-control" aria-required="true" autocomplete="off" asp-for="Product.ISBN">
+						<label class="form-label" asp-for="Product.ISBN">ISBN</label>
+						<span asp-validation-for="Product.ISBN" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-3">
+						<input class="form-control" aria-required="true" autocomplete="off" asp-for="Product.ListPrice">
+						<label class="form-label" asp-for="Product.ListPrice">List Price</label>
+						<span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-3">
+						<input class="form-control" aria-required="true" autocomplete="off" asp-for="Product.Price">
+						<label class="form-label" asp-for="Product.Price">Price</label>
+						<span asp-validation-for="Product.Price" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-3">
+						<input class="form-control" aria-required="true" autocomplete="off" asp-for="Product.Price50">
+						<label class="form-label" asp-for="Product.Price50">Price 50</label>
+						<span asp-validation-for="Product.Price50" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-3">
+						<input class="form-control" aria-required="true" autocomplete="off" asp-for="Product.Price100">
+						<label class="form-label" asp-for="Product.Price100">Price 100</label>
+						<span asp-validation-for="Product.Price100" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-3">
+						<select class="form-select" aria-required="true" autocomplete="off" asp-items="@Model.CategoryList" asp-for="Product.CategoryId">
+							<option disabled selected>--Select Category--</option>
+						</select>
+						<label class="form-label" asp-for="Product.CategoryId">Category</label>
+						<span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-3">
+						<input type="file" name="file" class="form-control" aria-required="true" autocomplete="off" asp-for="Product.ImageUrl">
+						<label class="form-label" asp-for="Product.ImageUrl">Image URL</label>
+					</div>
+
+					<div class="row">
+						<div class="col-6 col-md-3">
+							@if (Model.Product.Id != 0)
+							{
+								<button type="submit" class="btn btn-success form-control">Update</button>
+							}
+							else
+							{
+								<button type="submit" class="btn btn-success form-control">Create</button>
+							}
+						</div>
+						<div class="col-6 col-md-3">
+							<a asp-controller="Product" asp-action="Index" class="btn btn-primary form-control">Back to List</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-3">
+					<img src="@Model.Product.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" ; />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+@section Scripts {
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount',
+			toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent',
+			tinycomments_mode: 'embedded',
+			tinycomments_author: 'Author name',
+			mergetags_list: [
+				{ value: 'First.Name', title: 'First Name' },
+				{ value: 'Email', title: 'Email' },
+			],
+			ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+		});
+	</script>
+
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
+

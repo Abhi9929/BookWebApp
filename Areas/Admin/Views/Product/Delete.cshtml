@@ -1,0 +1,74 @@
+﻿@model Product
+
+@{
+	ViewData["Title"] = "Delete";
+}
+
+<div class="card shadow border-0 my-4">
+	<div class="card-header bg-secondary bg-gradient ml-0 py-4">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="py-2 text-white">Delete Product</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<div class="row">
+			<div class="col-md-12">
+				<section>
+					<form method="post">
+						<div class="form-floating mb-3">
+							<input disabled class="form-control" autocomplete="off" aria-required="true" asp-for="Title">
+							<label class="form-label" asp-for="Title">Title</label>
+						</div>
+						<div class="form-floating mb-3">
+							<textarea class="form-control" aria-required="true" autocomplete="off" asp-for="Description"></textarea>
+							<label class="form-label" asp-for="Description">Description</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input disabled class="form-control" aria-required="true" autocomplete="off" asp-for="Author">
+							<label class="form-label" asp-for="Author">Author</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input disabled class="form-control" aria-required="true" autocomplete="off" asp-for="ISBN">
+							<label class="form-label" asp-for="ISBN">ISBN</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input disabled class="form-control" aria-required="true" autocomplete="off" asp-for="ListPrice">
+							<label class="form-label" asp-for="ListPrice">List Price</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input disabled class="form-control" aria-required="true" autocomplete="off" asp-for="Price">
+							<label class="form-label" asp-for="Price">Price</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input disabled class="form-control" aria-required="true" autocomplete="off" asp-for="Price50">
+							<label class="form-label" asp-for="Price50">Price 50</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input disabled class="form-control" aria-required="true" autocomplete="off" asp-for="Price100">
+							<label class="form-label" asp-for="Price100">Price 100</label>
+						</div>
+
+						<div class="row">
+							<div class="col-6 col-md-3">
+								<button type="submit" class="btn btn-danger form-control">Delete</button>
+							</div>
+							<div class="col-6 col-md-3">
+								<a asp-controller="Product" asp-action="Index" class="btn btn-primary form-control">Cancel</a>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
+
